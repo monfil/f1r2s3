@@ -35,15 +35,6 @@ p fibonacci_iterative(2) == 1
 p fibonacci_iterative(3) == 2
 p fibonacci_iterative(4) == 3
 
-Benchmark.bm do |bm|
-  bm.report do
-    iterations.times do
-      fibonacci_iterative(10)
-      "The current time is #{Time.now}"
-    end
-  end
-end
-
 p fibonacci_recursive(0) == 0
 p fibonacci_recursive(1) == 1
 p fibonacci_recursive(2) == 1
@@ -51,11 +42,7 @@ p fibonacci_recursive(3) == 2
 p fibonacci_recursive(4) == 3
 p fibonacci_recursive(5) == 5
 
-Benchmark.bm do |bm|
-  bm.report do
-    iterations.times do
-      fibonacci_recursive(10)
-      "The current time is #{Time.now}"
-    end
-  end
+Benchmark.bm(1000) do |x|
+  x.report('Iterative: ') { fibonacci_iterative(35)}
+  x.report('Recursive: ') { fibonacci_recursive (35)}
 end
